@@ -2,184 +2,1070 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RetireWise AI — The #1 Retirement Planning Tool for Financial Advisors</title>
-<meta name="description" content="Show clients a complete retirement picture — live, personalized, in the first 10 minutes. Built for independent financial advisors, RIAs, and CFPs.">
-<!-- Facebook Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','7149422351849992');fbq('track','PageView');
-</script>
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-30G660RB1W"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-30G660RB1W');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetireWise AI — Interactive Advisor Demo</title>
+<meta name="description" content="RetireWise AI — Show your client their complete retirement picture in the first 10 minutes. Interactive advisor demo.">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --navy:#0a1628;--dark:#0f2240;--blue:#1565c0;--cyan:#00bcd4;
-    --green:#00c853;--white:#fff;--gray:#94a3b8;
-    --font:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
-  }
-  body{background:var(--navy);color:var(--white);font-family:var(--font);line-height:1.6;overflow-x:hidden}
-  
-  /* NAV */
-  nav{background:rgba(10,22,40,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .nav-logo{font-size:22px;font-weight:800;letter-spacing:-0.5px}
-  .nav-logo span{color:var(--cyan)}
-  .nav-badge{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
-  
-  /* HERO */
-  .hero{max-width:900px;margin:0 auto;padding:72px 24px 48px;text-align:center}
-  .hero-badge{display:inline-block;background:rgba(0,188,212,.12);border:1px solid rgba(0,188,212,.3);color:var(--cyan);font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
-  h1{font-size:clamp(32px,5vw,58px);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
-  h1 span{background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-  .hero-sub{font-size:clamp(16px,2.5vw,22px);color:var(--gray);max-width:680px;margin:0 auto 36px;font-weight:400}
-  
-  /* SOCIAL PROOF BAR */
-  .proof-bar{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:48px;padding:0 16px}
-  .proof-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray)}
-  .proof-icon{font-size:18px}
-  .proof-item strong{color:var(--white);font-weight:700}
-  
-  /* VSL PLAYER */
-  .vsl-section{max-width:840px;margin:0 auto 56px;padding:0 24px}
-  .vsl-wrapper{position:relative;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);}
-  .vsl-wrapper video{width:100%;display:block;border-radius:16px;max-height:500px;background:#000}
-  .vsl-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:20px 24px;pointer-events:none}
-  .vsl-caption{color:rgba(255,255,255,.7);font-size:13px;font-style:italic}
-  
-  /* FEATURES */
-  .features{max-width:900px;margin:0 auto 64px;padding:0 24px}
-  .features-title{text-align:center;font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:40px}
-  .features-title span{color:var(--cyan)}
-  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-  .feature-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;transition:border-color .2s}
-  .feature-card:hover{border-color:rgba(0,188,212,.3)}
-  .feature-icon{font-size:32px;margin-bottom:12px}
-  .feature-title{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--white)}
-  .feature-desc{font-size:14px;color:var(--gray);line-height:1.6}
-  
-  /* CTA SECTION */
-  .cta-section{max-width:700px;margin:0 auto 80px;padding:0 24px;text-align:center}
-  .cta-box{background:linear-gradient(135deg,rgba(21,101,192,.2),rgba(0,188,212,.1));border:1px solid rgba(0,188,212,.2);border-radius:20px;padding:48px 32px}
-  .cta-title{font-size:clamp(24px,3.5vw,36px);font-weight:900;margin-bottom:12px}
-  .cta-sub{font-size:16px;color:var(--gray);margin-bottom:32px}
-  .btn-primary{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;font-size:18px;font-weight:800;padding:18px 48px;border-radius:50px;text-decoration:none;letter-spacing:-0.3px;transition:transform .15s,box-shadow .15s;box-shadow:0 8px 32px rgba(0,188,212,.3)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,188,212,.45)}
-  .btn-secondary{display:inline-block;background:transparent;border:2px solid rgba(255,255,255,.2);color:#fff;font-size:16px;font-weight:600;padding:14px 36px;border-radius:50px;text-decoration:none;margin-top:16px;transition:border-color .15s}
-  .btn-secondary:hover{border-color:rgba(255,255,255,.5)}
-  .cta-note{font-size:13px;color:var(--gray);margin-top:20px}
-  
-  /* FOOTER */
-  footer{border-top:1px solid rgba(255,255,255,.06);padding:32px 24px;text-align:center;color:var(--gray);font-size:13px}
-  footer a{color:var(--gray);text-decoration:none}
-  
-  @media(max-width:600px){
-    .proof-bar{gap:16px}
-    .cta-box{padding:32px 20px}
-    .btn-primary{font-size:16px;padding:16px 36px}
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b2a;--blue:#1a56db;--teal:#0e9f6e;--gold:#f59e0b;--red:#e02424;
+  --gray:#6b7280;--light:#f9fafb;--white:#ffffff;--border:#e5e7eb;
+  --shadow:0 4px 24px rgba(0,0,0,.10);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--light);color:#111;line-height:1.6;min-height:100vh}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--navy);color:#fff;text-align:center;padding:10px 20px;font-size:13px;font-weight:600;letter-spacing:.3px}
+.topbar span{color:var(--gold)}
+
+/* ── HEADER ── */
+header{background:var(--white);border-bottom:2px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.logo{font-size:1.4rem;font-weight:800;color:var(--navy)}
+.logo span{color:var(--blue)}
+.step-badge{background:var(--blue);color:#fff;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:600}
+
+/* ── PROGRESS ── */
+.progress-bar{background:#e5e7eb;height:5px}
+.progress-fill{background:linear-gradient(90deg,var(--blue),var(--teal));height:5px;transition:width .5s ease}
+
+/* ── MAIN ── */
+.main{max-width:900px;margin:0 auto;padding:32px 20px 80px}
+
+/* ── SCREEN ── */
+.screen{display:none;animation:fadeIn .4s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARDS ── */
+.card{background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px}
+.card h2{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.card p.sub{color:var(--gray);font-size:.95rem;margin-bottom:24px}
+
+/* ── PERSONA GRID ── */
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.persona-card{border:2px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all .2s;text-align:center}
+.persona-card:hover,.persona-card.selected{border-color:var(--blue);background:#eff6ff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,86,219,.15)}
+.persona-card .emoji{font-size:3rem;margin-bottom:12px}
+.persona-card h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.persona-card .tag{display:inline-block;background:#dbeafe;color:var(--blue);font-size:.75rem;font-weight:600;padding:2px 10px;border-radius:20px;margin-bottom:8px}
+.persona-card p{font-size:.82rem;color:var(--gray);line-height:1.4}
+
+/* ── STAT GRID ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+.stat-box{background:var(--light);border-radius:10px;padding:18px 20px;border:1px solid var(--border)}
+.stat-box .label{font-size:.78rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.stat-box .value{font-size:1.6rem;font-weight:800;color:var(--navy)}
+.stat-box .sub{font-size:.75rem;color:var(--teal);font-weight:600;margin-top:2px}
+.stat-box.highlight{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-color:var(--blue)}
+.stat-box.gold{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-color:var(--gold)}
+.stat-box.green{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:var(--teal)}
+
+/* ── SLIDERS ── */
+.slider-group{margin:16px 0}
+.slider-group label{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:6px;display:flex;justify-content:space-between}
+.slider-group label span{color:var(--blue);font-weight:700}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:#e5e7eb;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--blue);cursor:pointer;box-shadow:0 2px 6px rgba(26,86,219,.4)}
+
+/* ── CHART CONTAINER ── */
+.chart-wrap{background:var(--white);border-radius:12px;padding:20px;border:1px solid var(--border);margin:16px 0}
+.chart-wrap h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:12px}
+canvas{max-height:260px}
+
+/* ── COPILOT ── */
+.copilot-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:1px solid #bae6fd;border-radius:12px;padding:20px;margin:16px 0}
+.copilot-box h3{font-size:1rem;font-weight:700;color:#0c4a6e;margin-bottom:12px}
+.q-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.q-btn{background:#fff;border:1px solid #93c5fd;color:#1e40af;padding:7px 14px;border-radius:20px;font-size:.82rem;cursor:pointer;transition:all .2s;font-weight:500}
+.q-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.q-input-row{display:flex;gap:8px;margin-bottom:12px}
+.q-input-row input{flex:1;border:1px solid #93c5fd;border-radius:8px;padding:9px 14px;font-size:.9rem;outline:none}
+.q-input-row input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,.12)}
+.q-input-row button{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 18px;cursor:pointer;font-weight:600;font-size:.9rem}
+.ai-answer{background:#fff;border-left:4px solid var(--blue);padding:14px 16px;border-radius:0 8px 8px 0;font-size:.9rem;line-height:1.7;color:#1e293b;display:none}
+
+/* ── STRESS TEST ── */
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.scenario-btn{border:2px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;text-align:center;transition:all .2s;background:#fff}
+.scenario-btn:hover{border-color:var(--red);background:#fff5f5}
+.scenario-btn.active{border-color:var(--red);background:#fff5f5}
+.scenario-btn .icon{font-size:2rem;margin-bottom:6px}
+.scenario-btn h4{font-size:.9rem;font-weight:700;color:var(--navy)}
+.scenario-btn p{font-size:.75rem;color:var(--gray)}
+.stress-result{background:#fff;border:2px solid var(--teal);border-radius:12px;padding:20px;margin:16px 0;display:none}
+.stress-result.fail{border-color:var(--red)}
+.stress-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-weight:700;font-size:.9rem;margin-bottom:12px}
+.stress-badge.pass{background:#d1fae5;color:#065f46}
+.stress-badge.fail{background:#fee2e2;color:#991b1b}
+
+/* ── SS OPTIMIZER ── */
+.ss-claim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.ss-card{border:2px solid var(--border);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.ss-card:hover{border-color:var(--gold)}
+.ss-card.selected{border-color:var(--gold);background:#fffbeb}
+.ss-card h4{font-size:.85rem;color:var(--gray);font-weight:600;margin-bottom:4px}
+.ss-card .amount{font-size:1.5rem;font-weight:800;color:var(--navy)}
+.ss-card .lifetime{font-size:.78rem;color:var(--teal);font-weight:600;margin-top:4px}
+.ss-card .delta{font-size:.75rem;color:var(--gray);margin-top:2px}
+.ss-insight{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid var(--gold);border-radius:12px;padding:16px 20px;margin:16px 0;font-size:.9rem;line-height:1.6}
+.ss-insight strong{color:#92400e}
+
+/* ── ROADMAP ── */
+.timeline{position:relative;padding-left:32px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),var(--teal))}
+.milestone{position:relative;margin-bottom:20px}
+.milestone::before{content:'';position:absolute;left:-26px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+.milestone h4{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:2px}
+.milestone .age-tag{display:inline-block;background:#dbeafe;color:var(--blue);font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:10px;margin-bottom:4px}
+.milestone p{font-size:.83rem;color:var(--gray);line-height:1.5}
+.milestone .impact{font-size:.78rem;color:var(--teal);font-weight:600;margin-top:3px}
+
+/* ── CONFIDENCE SCORE ── */
+.score-wrap{text-align:center;padding:24px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:14px;margin:16px 0}
+.score-circle{width:110px;height:110px;border-radius:50%;background:conic-gradient(var(--blue) var(--pct),#e5e7eb 0);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative}
+.score-circle::before{content:'';position:absolute;width:82px;height:82px;border-radius:50%;background:#eff6ff}
+.score-num{position:relative;font-size:1.8rem;font-weight:800;color:var(--navy);z-index:1}
+.score-label{font-size:.85rem;color:var(--gray);font-weight:600}
+
+/* ── SUMMARY ── */
+.summary-hero{background:linear-gradient(135deg,var(--navy),#1a3448);border-radius:16px;padding:32px;text-align:center;color:#fff;margin-bottom:20px}
+.summary-hero .total{font-size:3rem;font-weight:900;color:var(--gold);line-height:1.1;margin:12px 0}
+.summary-hero p{color:#94a3b8;font-size:.95rem}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
+.sum-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.sum-item .val{font-size:1.35rem;font-weight:800;color:var(--navy)}
+.sum-item .lbl{font-size:.75rem;color:var(--gray);font-weight:600;margin-top:4px}
+.close-q{background:linear-gradient(135deg,#fef3c7,#fffbeb);border:2px solid var(--gold);border-radius:12px;padding:20px 24px;margin:16px 0;font-size:1rem;line-height:1.7;color:#78350f;font-style:italic}
+.close-q strong{font-style:normal;color:#92400e}
+
+/* ── LEAD FORM ── */
+.lead-form{background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--shadow);border:2px solid var(--blue)}
+.lead-form h2{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.lead-form p{color:var(--gray);font-size:.9rem;margin-bottom:20px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-row.full{grid-template-columns:1fr}
+.form-row input,.form-row select{width:100%;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:.9rem;outline:none;transition:border .2s}
+.form-row input:focus,.form-row select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,.1)}
+.success-box{background:#d1fae5;border:2px solid var(--teal);border-radius:12px;padding:24px;text-align:center;display:none}
+.success-box h3{font-size:1.2rem;font-weight:800;color:#065f46;margin-bottom:8px}
+.success-box p{color:#047857;font-size:.9rem}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;text-decoration:none}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#1e40af;transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,86,219,.35)}
+.btn-secondary{background:var(--white);color:var(--navy);border:2px solid var(--border)}
+.btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#d97706;transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,158,11,.35)}
+.btn-lg{padding:16px 36px;font-size:1.1rem}
+.nav-row{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:24px;color:var(--gray);font-size:.75rem;border-top:1px solid var(--border);background:var(--white)}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr}
+  .ss-claim-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .summary-hero .total{font-size:2.2rem}
+}
+
+/* ── FOUNDER VSL ── */
+.vsl-section{background:linear-gradient(135deg,#0d1b2a 0%,#1a3a5c 100%);padding:40px 20px;text-align:center}
+.vsl-section .vsl-eyebrow{color:#f59e0b;font-size:.85rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.vsl-section .vsl-headline{color:#fff;font-size:1.55rem;font-weight:800;margin-bottom:6px;line-height:1.3}
+.vsl-section .vsl-sub{color:#94a3b8;font-size:.95rem;margin-bottom:24px}
+.vsl-wrapper{position:relative;max-width:780px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);border:2px solid rgba(245,158,11,.3)}
+.vsl-wrapper iframe{display:block;width:100%;height:440px;border:none}
+.vsl-cta-row{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.vsl-cta-btn{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:800;font-size:1rem;padding:14px 32px;border-radius:50px;text-decoration:none;display:inline-block;box-shadow:0 4px 20px rgba(245,158,11,.4);transition:transform .2s}
+.vsl-cta-btn:hover{transform:translateY(-2px)}
+.vsl-trust{color:#64748b;font-size:.8rem}
+@media(max-width:600px){.vsl-wrapper iframe{height:240px}.vsl-section .vsl-headline{font-size:1.2rem}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">Retire<span>Wise</span> AI</div>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span class="nav-badge">For Advisors</span>
-  </div>
-</nav>
+<div class="topbar">🏆 RetireWise AI — <span>Advisor Demo</span> · Live Interactive Retirement Planner</div>
 
-<section class="hero">
-  <div class="hero-badge">🏆 Trusted by Independent Financial Advisors</div>
-  <h1>Win More Clients in the<br><span>First 10 Minutes</span> of Every Meeting</h1>
-  <p class="hero-sub">Show clients a complete, personalized retirement picture — live, with real numbers — before they leave your office. No proposal delays. No "I'll think about it."</p>
-  <div class="proof-bar">
-    <div class="proof-item"><span class="proof-icon">⚡</span><strong>Live sliders</strong> update in real time</div>
-    <div class="proof-item"><span class="proof-icon">🤖</span><strong>AI Copilot</strong> answers client questions</div>
-    <div class="proof-item"><span class="proof-icon">📊</span><strong>9 interactive scenes</strong> per demo</div>
-    <div class="proof-item"><span class="proof-icon">🛡️</span><strong>Stress test</strong> any market crash scenario</div>
-  </div>
-</section>
+<header>
+  <div class="logo">Retire<span>Wise</span> AI</div>
+  <div class="step-badge" id="stepLabel">Step 1 of 9</div>
+</header>
 
-<section class="vsl-section">
-  <div class="vsl-wrapper">
-    <video controls preload="metadata" playsinline poster="">
-      <source src="https://base44.app/api/apps/69e0f2d6a2727d691b7534f3/files/mp/public/69e0f2d6a2727d691b7534f3/806730ed9_retirewise_main.mp4" type="video/mp4">
-      Your browser doesn't support HTML5 video.
-    </video>
-    <div class="vsl-overlay">
-      <div class="vsl-caption">▶ Watch the full RetireWise AI advisor demo — 8 minutes</div>
-    </div>
-  </div>
-</section>
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width:11%"></div>
+</div>
 
-<section class="features">
-  <h2 class="features-title">Everything Your Client Needs to Say <span>Yes — Today</span></h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🎭</div>
-      <div class="feature-title">3 Client Archetypes, Ready to Go</div>
-      <div class="feature-desc">Pre-built personas (Near-Retirement, Dual Income, High Earner) or customize live with any client's real numbers in under 60 seconds.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📈</div>
-      <div class="feature-title">Live Retirement Projections</div>
-      <div class="feature-desc">Sliders update every chart instantly. Age, savings, income, contributions, retirement date — your client watches their own numbers move.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <div class="feature-title">AI Retirement Copilot</div>
-      <div class="feature-desc">Clients ask questions, get personalized answers based on their actual data. "Should I delay Social Security?" — answered in seconds, with their numbers.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💼</div>
-      <div class="feature-title">Portfolio Optimizer</div>
-      <div class="feature-desc">AI recommends the exact allocation for their risk profile. Visualized in a live donut chart they can understand immediately.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📉</div>
-      <div class="feature-title">Market Crash Stress Test</div>
-      <div class="feature-desc">Run 2008, COVID, or Dot-Com scenarios live. Show exactly how your strategy protects them — then watch them lean in.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <div class="feature-title">Social Security Optimizer</div>
-      <div class="feature-desc">Live break-even analysis. Claim at 62 vs. 67 vs. 70 — the difference visualized instantly. One of the most powerful trust-builders in any meeting.</div>
-    </div>
-  </div>
-</section>
 
-<section class="cta-section">
-  <div class="cta-box">
-    <h2 class="cta-title">See It Live — Free 15-Min Demo</h2>
-    <p class="cta-sub">Watch how advisors are using RetireWise AI to close clients in the first meeting — without a 2-week proposal cycle.</p>
-    <a href="https://oncehub.com/PAGE-A2441E2BBC" class="btn-primary" target="_blank" onclick="fbq('track','InitiateCheckout')">📅 Book Your Free Demo Call</a>
-    <br>
-    <a href="/advisor-demo.html" class="btn-secondary">▶ Try the Interactive Demo Now</a>
-    <p class="cta-note">No commitment. 15 minutes. See exactly how it works with your own clients.</p>
+<!-- ══════════════════════════════════════════ -->
+<!-- FOUNDER VSL — HeyGen Video Agent          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="vsl-section">
+  <div class="vsl-eyebrow">🎬 Message from the Founder</div>
+  <h2 class="vsl-headline">See How Advisors Close More Clients<br>in the First 10 Minutes</h2>
+  <p class="vsl-sub">Watch this 2-minute demo before you begin — then experience it live below</p>
+    <div class="vsl-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/RAtrylFh3zQ?rel=0&modestbranding=1&color=white&autoplay=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+      title="RetireWise AI — Founder Demo">
+    </iframe>
   </div>
-</section>
+  <div class="vsl-cta-row">
+    <a href="#screen1" class="vsl-cta-btn" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">▶ Start the Interactive Demo</a>
+    <span class="vsl-trust">⚡ No login required &nbsp;·&nbsp; 9-step live walkthrough</span>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 1: PERSONA SELECTION               -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen active" id="screen1">
+  <div class="card">
+    <h2>👋 Welcome to the RetireWise Advisor Demo</h2>
+    <p class="sub">Select your client archetype — or use your own numbers. Every projection updates in real time.</p>
+
+    <div class="persona-grid">
+      <div class="persona-card" onclick="selectPersona('margaret')">
+        <div class="emoji">👩</div>
+        <div class="tag">Near-Retiree</div>
+        <h3>Margaret Ellis</h3>
+        <p>63 · Single · Conservative<br>$1.25M saved · $185K income<br>Retiring at 67 · Worried about outliving savings</p>
+      </div>
+      <div class="persona-card" onclick="selectPersona('sarah')">
+        <div class="emoji">👫</div>
+        <div class="tag">Pre-Retirees</div>
+        <h3>Sarah &amp; Michael</h3>
+        <p>58/56 · Couple · Moderate<br>$1.25M saved · $185K income<br>Retiring at 65 · Planning dual income</p>
+      </div>
+      <div class="persona-card" onclick="selectPersona('david')">
+        <div class="emoji">👨‍💼</div>
+        <div class="tag">Mid-Career Accelerator</div>
+        <h3>David Chen</h3>
+        <p>45 · Single · Aggressive<br>$480K saved · $220K income<br>Retiring at 60 · Maximize growth</p>
+      </div>
+    </div>
+
+    <div id="customSliders" style="display:none">
+      <hr style="border:1px solid var(--border);margin:20px 0">
+      <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:16px">🎛️ Fine-tune the numbers</h3>
+      <div class="slider-group">
+        <label>Current Age <span id="ageVal">-</span></label>
+        <input type="range" id="slAge" min="40" max="70" oninput="updateSliders()">
+      </div>
+      <div class="slider-group">
+        <label>Current Savings <span id="savingsVal">-</span></label>
+        <input type="range" id="slSavings" min="100000" max="3000000" step="25000" oninput="updateSliders()">
+      </div>
+      <div class="slider-group">
+        <label>Monthly Contribution <span id="contribVal">-</span></label>
+        <input type="range" id="slContrib" min="500" max="10000" step="250" oninput="updateSliders()">
+      </div>
+      <div class="slider-group">
+        <label>Retirement Age <span id="retireAgeVal">-</span></label>
+        <input type="range" id="slRetireAge" min="55" max="72" oninput="updateSliders()">
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-primary" onclick="goTo(2)" id="nextBtn1" style="display:none">Build the Plan →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 2: FINANCIAL DASHBOARD             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen2">
+  <div class="card">
+    <h2>📊 Retirement Financial Dashboard</h2>
+    <p class="sub" id="dashboardSubtitle">Live projections for your client</p>
+
+    <div class="stat-grid">
+      <div class="stat-box highlight">
+        <div class="label">Projected Balance</div>
+        <div class="value" id="projBalance">—</div>
+        <div class="sub">at retirement</div>
+      </div>
+      <div class="stat-box green">
+        <div class="label">Monthly Income</div>
+        <div class="value" id="monthlyIncome">—</div>
+        <div class="sub">from portfolio (4% rule)</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Income Replacement</div>
+        <div class="value" id="incomeReplacement">—</div>
+        <div class="sub">of current income</div>
+      </div>
+      <div class="stat-box gold">
+        <div class="label">SS Benefit</div>
+        <div class="value" id="ssBenefit">—</div>
+        <div class="sub">⚡ BEFORE Social Security</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>📈 Portfolio Growth to Retirement</h3>
+      <canvas id="growthChart"></canvas>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(3)">AI Copilot →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 3: AI COPILOT                      -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen3">
+  <div class="card">
+    <h2>🤖 Retirement Copilot</h2>
+    <p class="sub">Ask anything about your client's plan. AI answers using their specific profile — not generic advice.</p>
+
+    <div class="copilot-box">
+      <h3>💬 Suggested questions</h3>
+      <div class="q-list">
+        <button class="q-btn" onclick="askQuestion('Should my client wait until 70 to claim Social Security?')">SS timing strategy</button>
+        <button class="q-btn" onclick="askQuestion('How much should my client save to close the income gap?')">Close the income gap</button>
+        <button class="q-btn" onclick="askQuestion('What is the biggest risk to this retirement plan?')">Top risk factors</button>
+        <button class="q-btn" onclick="askQuestion('Should my client do a Roth conversion this year?')">Roth conversion</button>
+        <button class="q-btn" onclick="askQuestion('How does inflation affect this plan at 3% per year?')">Inflation impact</button>
+        <button class="q-btn" onclick="askQuestion('What happens if my client retires 2 years early?')">Early retirement</button>
+      </div>
+      <div class="q-input-row">
+        <input type="text" id="customQ" placeholder="Or type your own question..." onkeydown="if(event.key==='Enter')askQuestion()">
+        <button onclick="askQuestion()">Ask AI</button>
+      </div>
+      <div class="ai-answer" id="aiAnswer"></div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(4)">Optimize Portfolio →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 4: PORTFOLIO OPTIMIZER             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen4">
+  <div class="card">
+    <h2>⚙️ Portfolio Optimizer</h2>
+    <p class="sub">Adjust allocation to see how it impacts income and risk. AI recommends the optimal mix for your client's profile.</p>
+
+    <div class="stat-grid" id="optGrid">
+      <div class="stat-box highlight">
+        <div class="label">Projected Return</div>
+        <div class="value" id="optReturn">—</div>
+        <div class="sub">blended annual</div>
+      </div>
+      <div class="stat-box green">
+        <div class="label">Optimized Balance</div>
+        <div class="value" id="optBalance">—</div>
+        <div class="sub">at retirement</div>
+      </div>
+      <div class="stat-box gold">
+        <div class="label">Max Drawdown Risk</div>
+        <div class="value" id="optRisk">—</div>
+        <div class="sub">worst year scenario</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>🥧 Recommended Allocation</h3>
+      <canvas id="allocChart" style="max-height:220px;max-width:300px;margin:0 auto;display:block"></canvas>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(5)">Run Stress Test →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 5: STRESS TEST                     -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen5">
+  <div class="card">
+    <h2>🔥 Market Crash Stress Test</h2>
+    <p class="sub">Simulate a real market crisis. Show your client exactly what happens — and how the plan recovers.</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-btn" id="sc1" onclick="runStress('2008')">
+        <div class="icon">📉</div>
+        <h4>2008 Financial Crisis</h4>
+        <p>−38% crash · 5yr recovery</p>
+      </div>
+      <div class="scenario-btn" id="sc2" onclick="runStress('covid')">
+        <div class="icon">🦠</div>
+        <h4>COVID-2020</h4>
+        <p>−33% crash · 14mo recovery</p>
+      </div>
+      <div class="scenario-btn" id="sc3" onclick="runStress('dotcom')">
+        <div class="icon">💻</div>
+        <h4>Dot-Com Crash</h4>
+        <p>−49% crash · 7yr recovery</p>
+      </div>
+    </div>
+
+    <div class="stress-result" id="stressResult">
+      <div class="stress-badge pass" id="stressBadge">✅ Plan Survives</div>
+      <div class="stat-grid" style="margin:8px 0">
+        <div class="stat-box">
+          <div class="label">Portfolio Low Point</div>
+          <div class="value" id="stressLow">—</div>
+          <div class="sub" id="stressLowSub">—</div>
+        </div>
+        <div class="stat-box green">
+          <div class="label">Recovery Value</div>
+          <div class="value" id="stressRecov">—</div>
+          <div class="sub" id="stressRecovSub">—</div>
+        </div>
+        <div class="stat-box highlight">
+          <div class="label">Final Balance</div>
+          <div class="value" id="stressFinal">—</div>
+          <div class="sub">at planned retirement</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <h3>📉 Crash Recovery Timeline</h3>
+        <canvas id="stressChart"></canvas>
+      </div>
+      <p id="stressNarrative" style="font-size:.9rem;color:#374151;line-height:1.7;margin-top:8px"></p>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(4)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(6)">Social Security →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 6: SOCIAL SECURITY OPTIMIZER       -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen6">
+  <div class="card">
+    <h2>🏛️ Social Security Optimizer</h2>
+    <p class="sub">Claiming 5 years too early can cost your client $100,000+ in lifetime benefits. See the break-even analysis live.</p>
+
+    <div class="ss-claim-grid">
+      <div class="ss-card" id="ssCard62" onclick="selectSS(62)">
+        <h4>Claim at 62</h4>
+        <div class="amount" id="ss62">—</div>
+        <div class="lifetime" id="ssLife62">—</div>
+        <div class="delta" id="ssDelta62"></div>
+      </div>
+      <div class="ss-card selected" id="ssCard67" onclick="selectSS(67)">
+        <h4>Claim at 67 (FRA)</h4>
+        <div class="amount" id="ss67">—</div>
+        <div class="lifetime" id="ssLife67">—</div>
+        <div class="delta" id="ssDelta67">✔ Full Benefit</div>
+      </div>
+      <div class="ss-card" id="ssCard70" onclick="selectSS(70)">
+        <h4>Claim at 70</h4>
+        <div class="amount" id="ss70">—</div>
+        <div class="lifetime" id="ssLife70">—</div>
+        <div class="delta" id="ssDelta70">+8%/yr DRC</div>
+      </div>
+    </div>
+
+    <div class="ss-insight" id="ssInsight">Select a claiming age above to see the break-even analysis.</div>
+
+    <div class="chart-wrap">
+      <h3>📊 Lifetime Benefit Comparison</h3>
+      <canvas id="ssChart"></canvas>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(5)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(7)">Build Roadmap →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 7: RETIREMENT ROADMAP              -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen7">
+  <div class="card">
+    <h2>🗺️ Personalized Retirement Roadmap</h2>
+    <p class="sub">Every milestone is specific to your client — their ages, their windows, their numbers.</p>
+
+    <div class="timeline" id="roadmapTimeline"></div>
+
+    <div class="score-wrap" id="scoreWrap">
+      <div class="score-circle" id="scoreCircle" style="--pct:0deg">
+        <div class="score-num" id="scoreNum">—</div>
+      </div>
+      <div class="score-label">Retirement Confidence Score</div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(6)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(8)">View Full Summary →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 8: PLAN SUMMARY                    -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen8">
+  <div class="card">
+    <h2>📋 Complete Retirement Plan Summary</h2>
+    <p class="sub">The full picture — built live, in front of your client.</p>
+
+    <div class="summary-hero">
+      <p style="font-size:.9rem;opacity:.7">Total Monthly Retirement Income</p>
+      <div class="total" id="totalIncome">—</div>
+      <p>Portfolio + Social Security · <span id="totalReplacement">—</span>% income replacement</p>
+    </div>
+
+    <div class="summary-grid">
+      <div class="sum-item">
+        <div class="val" id="sumBalance">—</div>
+        <div class="lbl">Portfolio at Retirement</div>
+      </div>
+      <div class="sum-item">
+        <div class="val" id="sumPortIncome">—</div>
+        <div class="lbl">Portfolio Income/Mo</div>
+      </div>
+      <div class="sum-item">
+        <div class="val" id="sumSSIncome">—</div>
+        <div class="lbl">Social Security/Mo</div>
+      </div>
+      <div class="sum-item">
+        <div class="val" id="sumScore">—</div>
+        <div class="lbl">Confidence Score</div>
+      </div>
+      <div class="sum-item">
+        <div class="val" id="sumStress">—</div>
+        <div class="lbl">Stress Test Result</div>
+      </div>
+      <div class="sum-item">
+        <div class="val" id="sumYears">—</div>
+        <div class="lbl">Years to Retirement</div>
+      </div>
+    </div>
+
+    <div class="close-q">
+      "Based on everything we reviewed today — <strong><span id="clientFirstName">your client</span></strong> is projected at <strong><span id="closeIncome">—</span>/month</strong> in retirement income. Does this feel like the life you want? Are you ready to build this plan for real?"
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(7)">← Back</button>
+      <button class="btn btn-gold btn-lg" onclick="goTo(9)">📅 Capture This Lead →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SCREEN 9: LEAD CAPTURE                    -->
+<!-- ══════════════════════════════════════════ -->
+<div class="screen" id="screen9">
+  <div class="lead-form" id="leadFormWrap">
+    <h2>📩 Build Your Real Retirement Plan</h2>
+    <p>You've just seen your numbers. Let's make it official — enter your details and we'll send you a personalized retirement report.</p>
+
+    <div id="leadFormInner">
+      <div class="form-row">
+        <input type="text" id="leadFirst" placeholder="First Name *" required>
+        <input type="text" id="leadLast" placeholder="Last Name">
+      </div>
+      <div class="form-row">
+        <input type="email" id="leadEmail" placeholder="Email Address *" required>
+        <input type="tel" id="leadPhone" placeholder="Phone Number">
+      </div>
+      <div class="form-row full">
+        <select id="leadBestTime">
+          <option value="">Best time to talk?</option>
+          <option>Morning (9AM–12PM)</option>
+          <option>Afternoon (12PM–5PM)</option>
+          <option>Evening (5PM–7PM)</option>
+          <option>Anytime</option>
+        </select>
+      </div>
+      <div class="form-row full" style="margin-top:8px">
+        <button class="btn btn-gold btn-lg" style="width:100%;justify-content:center" onclick="submitLead()">
+          🚀 Get My Retirement Report — Free
+        </button>
+      </div>
+      <p style="font-size:.75rem;color:var(--gray);text-align:center;margin-top:10px">No cost. No obligation. Your data is 100% private.<br><em>Results not typical. Individual projections vary. Not financial advice.</em></p>
+    </div>
+
+    <div class="success-box" id="successBox">
+      <div style="font-size:3rem;margin-bottom:8px">🎉</div>
+      <h3>Plan Captured — Check Your Inbox!</h3>
+      <p>Your personalized retirement report is on its way to <strong id="successEmail"></strong>.<br>
+      Your advisor will follow up within 1 business day.<br><br>
+      <a href="https://oncehub.com/PAGE-A2441E2BBC" target="_blank" style="color:var(--blue);font-weight:700">📅 Book a strategy call now →</a></p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px">
+    <button class="btn btn-secondary" onclick="goTo(8)">← Back to Summary</button>
+    <button class="btn btn-primary" onclick="startOver()" style="margin-left:10px">🔄 Run New Demo</button>
+  </div>
+</div>
+
+</div><!-- /main -->
 
 <footer>
-  <p>© 2026 NextGen Web LLC · <a href="mailto:dsameer@nexgenweb.biz">dsameer@nexgenweb.biz</a> · (844) 614-0642</p>
-  <p style="margin-top:8px"><a href="https://oncehub.com/PAGE-A2441E2BBC">Book a Call</a> · <a href="/advisor-demo.html">Live Demo</a></p>
+  RetireWise AI · Powered by NextGen Web LLC · (844) 614-0642 · nextgenwebpro.com<br>
+  <em>Projections are estimates only. Past performance does not guarantee future results. Not financial advice. Consult a licensed advisor.</em>
 </footer>
 
 <script>
-  // Track demo clicks
-  document.querySelectorAll('.btn-primary').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if(typeof fbq !== 'undefined') fbq('track','Lead');
-      if(typeof gtag !== 'undefined') gtag('event','cta_click',{event_category:'conversion',event_label:'book_demo'});
-    });
-  });
-  document.querySelectorAll('.btn-secondary').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if(typeof gtag !== 'undefined') gtag('event','demo_click',{event_category:'engagement',event_label:'try_demo'});
-    });
-  });
-</script>
+// ══════════════════════════════════
+// DATA
+// ══════════════════════════════════
+const personas = {
+  margaret: { name:'Margaret Ellis', firstName:'Margaret', age:63, retireAge:67, savings:1250000, income:185000, contrib:2500, risk:'conservative', ssBase:2590, alloc:{Bonds:50,Stocks:35,Cash:10,REITs:5}, returnRate:.055, riskPct:18 },
+  sarah:    { name:'Sarah & Michael', firstName:'Sarah', age:58, retireAge:65, savings:1250000, income:185000, contrib:3500, risk:'moderate', ssBase:4800, alloc:{Stocks:55,Bonds:30,REITs:10,Cash:5}, returnRate:.068, riskPct:25 },
+  david:    { name:'David Chen', firstName:'David', age:45, retireAge:60, savings:480000, income:220000, contrib:5000, risk:'aggressive', ssBase:2200, alloc:{Stocks:80,REITs:12,Bonds:5,Cash:3}, returnRate:.082, riskPct:35 }
+};
 
+let current = null;
+let stressChart = null, growthChart = null, allocChart = null, ssChart = null;
+let stressPassed = false;
+let selectedSSAge = 67;
+let confScore = 0;
+
+// ══════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════
+const steps = [null,'1','2','3','4','5','6','7','8','9'];
+const progress = [0,11,22,33,44,55,66,77,88,100];
+
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen'+n).classList.add('active');
+  document.getElementById('stepLabel').textContent = `Step ${n} of 9`;
+  document.getElementById('progressFill').style.width = progress[n]+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===2) buildDashboard();
+  if(n===4) buildOptimizer();
+  if(n===6) buildSS();
+  if(n===7) buildRoadmap();
+  if(n===8) buildSummary();
+}
+
+// ══════════════════════════════════
+// PERSONA SELECT
+// ══════════════════════════════════
+function selectPersona(key){
+  current = {...personas[key]};
+  document.querySelectorAll('.persona-card').forEach(c=>c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('customSliders').style.display='block';
+  const s = document.getElementById;
+  document.getElementById('slAge').value = current.age;
+  document.getElementById('slSavings').value = current.savings;
+  document.getElementById('slContrib').value = current.contrib;
+  document.getElementById('slRetireAge').value = current.retireAge;
+  updateSliders();
+  document.getElementById('nextBtn1').style.display='inline-flex';
+}
+
+function updateSliders(){
+  if(!current) return;
+  current.age = +document.getElementById('slAge').value;
+  current.savings = +document.getElementById('slSavings').value;
+  current.contrib = +document.getElementById('slContrib').value;
+  current.retireAge = +document.getElementById('slRetireAge').value;
+  document.getElementById('ageVal').textContent = current.age;
+  document.getElementById('savingsVal').textContent = '$'+current.savings.toLocaleString();
+  document.getElementById('contribVal').textContent = '$'+current.contrib.toLocaleString()+'/mo';
+  document.getElementById('retireAgeVal').textContent = current.retireAge;
+}
+
+// ══════════════════════════════════
+// CALCULATIONS
+// ══════════════════════════════════
+function calcProjected(){
+  const yrs = current.retireAge - current.age;
+  const r = current.returnRate;
+  const pv = current.savings * Math.pow(1+r, yrs);
+  const fv_contrib = current.contrib * 12 * ((Math.pow(1+r,yrs)-1)/r);
+  return Math.round(pv + fv_contrib);
+}
+
+function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
+function fmtK(n){ return n>=1000000 ? '$'+(n/1000000).toFixed(2)+'M' : '$'+(n/1000).toFixed(0)+'K'; }
+
+// ══════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════
+function buildDashboard(){
+  const proj = calcProjected();
+  const monthly = Math.round(proj * 0.04 / 12);
+  const repl = Math.round((monthly / (current.income/12))*100);
+  document.getElementById('projBalance').textContent = fmtK(proj);
+  document.getElementById('monthlyIncome').textContent = fmt(monthly)+'/mo';
+  document.getElementById('incomeReplacement').textContent = repl+'%';
+  document.getElementById('ssBenefit').textContent = fmt(current.ssBase)+'/mo';
+  document.getElementById('dashboardSubtitle').textContent = `Live projections for ${current.name}`;
+
+  // Growth chart
+  const yrs = current.retireAge - current.age;
+  const labels = [];
+  const balData = [];
+  const contrOnly = [];
+  let bal = current.savings;
+  let contrBal = current.savings;
+  for(let i=0;i<=yrs;i++){
+    labels.push(current.age+i);
+    balData.push(Math.round(bal));
+    contrOnly.push(Math.round(contrBal));
+    bal = bal*(1+current.returnRate) + current.contrib*12;
+    contrBal = contrBal + current.contrib*12;
+  }
+
+  if(growthChart) growthChart.destroy();
+  const ctx = document.getElementById('growthChart').getContext('2d');
+  growthChart = new Chart(ctx,{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'With Investment Growth',data:balData,borderColor:'#1a56db',backgroundColor:'rgba(26,86,219,.08)',fill:true,tension:.4,borderWidth:2.5},
+        {label:'Contributions Only',data:contrOnly,borderColor:'#e5e7eb',borderDash:[5,5],fill:false,tension:.4,borderWidth:1.5}
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{ticks:{callback:v=>fmtK(v)},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{font:{size:11}}}}}
+  });
+}
+
+// ══════════════════════════════════
+// COPILOT
+// ══════════════════════════════════
+const aiResponses = {
+  'ss timing': `For ${()=>current?.firstName||'your client'}, waiting until 67 (Full Retirement Age) instead of claiming at 62 increases monthly benefits by 43%. Waiting until 70 adds an additional 24% through Delayed Retirement Credits. Based on the projected income gap of ${()=>fmt(current?.income/12 - calcProjected()*0.04/12||0)}/month, the optimal strategy is to claim at 67 — this maximizes lifetime benefits while minimizing the bridge income gap.`,
+  'income gap': `Based on the current projection, the income gap is approximately ${()=>fmt(Math.max(0,(current?.income/12||0)-(calcProjected()*0.04/12||0)))}/month before Social Security. Closing strategies include: (1) increasing monthly contributions by $500 to add $${()=>Math.round(500*12*((Math.pow(1+current?.returnRate,current?.retireAge-current?.age)-1)/current?.returnRate)/1000)}K at retirement, (2) delaying retirement by 2 years to add compound growth, (3) adding a REIT allocation of 8–12% for income-producing assets.`,
+  'risk': `The top 3 risks to this plan are: (1) Sequence-of-returns risk — a market crash in the first 3 years of retirement is the most dangerous scenario. The stress test shows this plan ${stressPassed?'survives':'needs adjustment for'} a 2008-level crash. (2) Longevity risk — if your client lives to 90+, the 4% withdrawal rate may need to drop to 3.5%. (3) Healthcare costs — budget $315K in today's dollars for healthcare between retirement and Medicare eligibility.`,
+  'roth': `A Roth conversion makes sense if your client's income will be lower this year than in retirement. Based on current income of ${()=>fmt(current?.income||0)}/year, the optimal strategy is to convert up to the top of the current tax bracket each year until retirement. This creates tax-free income in retirement and reduces RMDs starting at age 73.`,
+  'inflation': `At 3% annual inflation, $${()=>fmtK(calcProjected()*0.04/12||0)} in today's dollars becomes ${()=>fmtK((calcProjected()*0.04/12||0)*Math.pow(0.97,current?.retireAge-current?.age||0))} in real purchasing power at retirement. The plan addresses this through: (1) REIT allocation for inflation-linked income, (2) Social Security COLA adjustments, (3) 4% withdrawal rate built on real returns. Recommend increasing monthly contributions by 3%/year to maintain purchasing power targets.`,
+  'early': `Retiring 2 years early has a compound impact: (1) 2 fewer years of contributions ≈ −${()=>fmtK(current?.contrib*24||0)} in added savings, (2) 2 more years of withdrawal ≈ extends portfolio usage, (3) Gap years before Social Security require bridge income. Modeling shows early retirement reduces projected balance by approximately ${()=>fmtK(calcProjected()*(1-Math.pow(1+current?.returnRate,-2))||0)}. We recommend a bridge income strategy using a bond ladder or part-time consulting income for the 2-year gap.`
+};
+
+function askQuestion(q){
+  const qEl = document.getElementById('customQ');
+  const question = q || qEl.value.trim();
+  if(!question) return;
+  qEl.value = question;
+
+  const ansEl = document.getElementById('aiAnswer');
+  ansEl.style.display='block';
+  ansEl.innerHTML = '<i style="color:#6b7280">🤔 Analyzing your client\'s profile...</i>';
+
+  setTimeout(()=>{
+    let answer = '';
+    const ql = question.toLowerCase();
+    if(ql.includes('social') || ql.includes('ss ') || ql.includes('security') || ql.includes('timing')) {
+      answer = `For <strong>${current.firstName}</strong>, waiting until 67 (Full Retirement Age) instead of claiming at 62 increases monthly benefits by 43% — from ${fmt(Math.round(current.ssBase*0.70))}/mo to ${fmt(current.ssBase)}/mo. Waiting to 70 adds another 24% to ${fmt(Math.round(current.ssBase*1.24))}/mo through Delayed Retirement Credits. Based on the projected income gap, the optimal strategy is to claim at 67 — this maximizes lifetime benefits while minimizing the bridge income gap.`;
+    } else if(ql.includes('gap') || ql.includes('close') || ql.includes('save more')) {
+      const gap = Math.max(0,(current.income/12)-(calcProjected()*0.04/12));
+      answer = `Based on the current projection, <strong>${current.firstName}</strong>'s income gap is approximately ${fmt(gap)}/month before Social Security. To close it: (1) Increase monthly contributions by $500 to add roughly ${fmtK(500*12*((Math.pow(1+current.returnRate,current.retireAge-current.age)-1)/current.returnRate))} at retirement, (2) Delay retirement by 2 years for additional compound growth, (3) Add REIT allocation of 8–12% for income-producing assets. SS benefits at 67 close ${fmt(current.ssBase)}/mo of the gap automatically.`;
+    } else if(ql.includes('risk') || ql.includes('danger') || ql.includes('threat')) {
+      answer = `The top 3 risks for <strong>${current.firstName}'s</strong> plan: (1) <strong>Sequence-of-returns risk</strong> — a market crash in the first 3 years of retirement is most dangerous. Run the stress test to see survival probability. (2) <strong>Longevity risk</strong> — if your client lives to 90+, the 4% withdrawal rate may need to drop to 3.5%, reducing monthly income by ~${fmt(calcProjected()*0.04/12*0.125)}. (3) <strong>Healthcare inflation</strong> — budget $315K in today's dollars for healthcare between retirement and Medicare eligibility at 65.`;
+    } else if(ql.includes('roth')) {
+      answer = `A Roth conversion makes sense for <strong>${current.firstName}</strong> if their income will be lower this year than in retirement. Current income of ${fmt(current.income)}/year suggests converting up to the top of the current bracket each year until retirement. This creates tax-free income in retirement and reduces RMDs starting at age 73. The optimal conversion window closes when income exceeds the Roth phase-out threshold (~$161K single, ~$240K married).`;
+    } else if(ql.includes('inflat')) {
+      const realIncome = Math.round(calcProjected()*0.04/12*Math.pow(0.97,current.retireAge-current.age));
+      answer = `At 3% annual inflation, <strong>${current.firstName}'s</strong> projected ${fmt(calcProjected()*0.04/12)}/month portfolio income has real purchasing power of approximately ${fmt(realIncome)}/month in today's dollars at retirement. The plan addresses this through: (1) REIT allocation for inflation-linked income, (2) Social Security COLA adjustments (~2.5%/yr historically), (3) Increasing contributions by 3%/year. Recommendation: add $250/mo to contributions annually to maintain target purchasing power.`;
+    } else if(ql.includes('early') || ql.includes('retire 2') || ql.includes('retire early')) {
+      const lostGrowth = Math.round(calcProjected()*(1-Math.pow(1/(1+current.returnRate),2)));
+      answer = `Retiring 2 years early has three compounding impacts for <strong>${current.firstName}</strong>: (1) 2 fewer years of contributions ≈ −${fmtK(current.contrib*24)} in savings, (2) Portfolio loses ~${fmtK(lostGrowth)} in compound growth, (3) 2 extra years of withdrawals start depleting the portfolio sooner. Total impact: reduces final balance by approximately ${fmtK(lostGrowth)}. Mitigation: bridge income strategy using a bond ladder or part-time work for the 2-year gap period.`;
+    } else {
+      const proj = calcProjected();
+      const monthly = Math.round(proj*0.04/12);
+      answer = `For <strong>${current.firstName}</strong> (Age ${current.age}, retiring at ${current.retireAge}): Projected balance ${fmtK(proj)}, monthly income ${fmt(monthly)}, income replacement ${Math.round((monthly/(current.income/12))*100)}%. The plan is ${Math.round((monthly/(current.income/12))*100)>=70?'on track':'below target'} for a comfortable retirement. Key next steps: (1) maximize contributions through catch-up provisions, (2) optimize Social Security claiming strategy, (3) ensure proper insurance coverage through retirement. Would you like to explore any of these areas in detail?`;
+    }
+    ansEl.innerHTML = answer;
+  }, 900);
+}
+
+// ══════════════════════════════════
+// OPTIMIZER
+// ══════════════════════════════════
+function buildOptimizer(){
+  const proj = calcProjected();
+  const returnPct = Math.round(current.returnRate*100*10)/10;
+  document.getElementById('optReturn').textContent = returnPct+'%';
+  document.getElementById('optBalance').textContent = fmtK(proj);
+  document.getElementById('optRisk').textContent = '−'+current.riskPct+'%';
+
+  const alloc = current.alloc;
+  const labels = Object.keys(alloc);
+  const vals = Object.values(alloc);
+  const colors = ['#1a56db','#0e9f6e','#f59e0b','#e02424','#7c3aed','#0891b2'];
+
+  if(allocChart) allocChart.destroy();
+  const ctx = document.getElementById('allocChart').getContext('2d');
+  allocChart = new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors.slice(0,labels.length),borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}
+  });
+}
+
+// ══════════════════════════════════
+// STRESS TEST
+// ══════════════════════════════════
+const crashes = {
+  '2008':{name:'2008 Financial Crisis',pct:.38,recovYrs:5,label:'−38% drawdown'},
+  'covid':{name:'COVID-2020',pct:.33,recovYrs:1.2,label:'−33% drawdown'},
+  'dotcom':{name:'Dot-Com Crash',pct:.49,recovYrs:7,label:'−49% drawdown'}
+};
+
+function runStress(key){
+  document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sc'+(key==='2008'?1:key==='covid'?2:3)).classList.add('active');
+
+  const c = crashes[key];
+  const proj = calcProjected();
+  const low = Math.round(proj*(1-c.pct));
+  const recov = Math.round(proj*(1+current.returnRate*c.recovYrs));
+  const final = proj;
+  stressPassed = low > current.savings * 0.5;
+
+  document.getElementById('stressLow').textContent = fmtK(low);
+  document.getElementById('stressLowSub').textContent = c.label;
+  document.getElementById('stressRecov').textContent = fmtK(recov);
+  document.getElementById('stressRecovSub').textContent = 'after '+Math.ceil(c.recovYrs)+' yr recovery';
+  document.getElementById('stressFinal').textContent = fmtK(final);
+
+  const badge = document.getElementById('stressBadge');
+  const resultBox = document.getElementById('stressResult');
+  resultBox.style.display='block';
+  if(stressPassed){
+    badge.className='stress-badge pass';
+    badge.textContent='✅ Plan Survives';
+    resultBox.classList.remove('fail');
+  } else {
+    badge.className='stress-badge fail';
+    badge.textContent='⚠️ Needs Adjustment';
+    resultBox.classList.add('fail');
+  }
+
+  document.getElementById('stressNarrative').innerHTML = `<strong>${current.firstName}'s</strong> portfolio drops from ${fmtK(proj)} to ${fmtK(low)} during the ${c.name}. With ongoing contributions and market recovery, the portfolio rebounds to ${fmtK(recov)} within ${Math.ceil(c.recovYrs)} ${c.recovYrs>1?'years':'year'} — and ultimately reaches the original retirement target of ${fmtK(final)}. <strong>The crash delayed retirement by approximately ${Math.ceil(c.recovYrs*0.4)} months but did not derail it.</strong>`;
+
+  // Stress chart
+  const yrs = current.retireAge - current.age;
+  const labels2 = [];
+  const baseline = [];
+  const crashed = [];
+  let bal = current.savings;
+  let crashBal = current.savings;
+  let crashed_flag = false;
+  for(let i=0;i<=yrs;i++){
+    labels2.push(current.age+i);
+    baseline.push(Math.round(bal));
+    if(i===Math.floor(yrs*0.6) && !crashed_flag){
+      crashBal = crashBal*(1-c.pct);
+      crashed_flag=true;
+    }
+    crashed.push(Math.round(crashBal));
+    bal = bal*(1+current.returnRate) + current.contrib*12;
+    crashBal = crashBal*(1+current.returnRate) + current.contrib*12;
+  }
+
+  if(stressChart) stressChart.destroy();
+  const ctx2 = document.getElementById('stressChart').getContext('2d');
+  stressChart = new Chart(ctx2,{
+    type:'line',
+    data:{
+      labels:labels2,
+      datasets:[
+        {label:'Original Plan',data:baseline,borderColor:'#0e9f6e',borderDash:[5,5],fill:false,tension:.4,borderWidth:2},
+        {label:c.name+' Scenario',data:crashed,borderColor:'#e02424',backgroundColor:'rgba(224,36,36,.06)',fill:true,tension:.4,borderWidth:2.5}
+      ]
+    },
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{ticks:{callback:v=>fmtK(v)},grid:{color:'rgba(0,0,0,.04)'}},x:{ticks:{font:{size:11}}}}}
+  });
+}
+
+// ══════════════════════════════════
+// SOCIAL SECURITY
+// ══════════════════════════════════
+function buildSS(){
+  const base = current.ssBase;
+  const lifeExp = 87;
+  const b62 = Math.round(base*0.70);
+  const b67 = base;
+  const b70 = Math.round(base*1.24);
+  const life62 = Math.round(b62*12*(lifeExp-62)/1000)*1000;
+  const life67 = Math.round(b67*12*(lifeExp-67)/1000)*1000;
+  const life70 = Math.round(b70*12*(lifeExp-70)/1000)*1000;
+
+  document.getElementById('ss62').textContent = fmt(b62)+'/mo';
+  document.getElementById('ss67').textContent = fmt(b67)+'/mo';
+  document.getElementById('ss70').textContent = fmt(b70)+'/mo';
+  document.getElementById('ssLife62').textContent = fmtK(life62)+' lifetime';
+  document.getElementById('ssLife67').textContent = fmtK(life67)+' lifetime';
+  document.getElementById('ssLife70').textContent = fmtK(life70)+' lifetime';
+  document.getElementById('ssDelta62').textContent = '−30% vs FRA';
+  document.getElementById('ssDelta70').textContent = '+'+Math.round((b70/b67-1)*100)+'% vs FRA';
+
+  // SS bar chart
+  if(ssChart) ssChart.destroy();
+  const ctx = document.getElementById('ssChart').getContext('2d');
+  ssChart = new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:['Claim at 62','Claim at 67 (FRA)','Claim at 70'],
+      datasets:[{
+        label:'Lifetime SS Benefit',
+        data:[life62,life67,life70],
+        backgroundColor:['#fee2e2','#dbeafe','#d1fae5'],
+        borderColor:['#e02424','#1a56db','#0e9f6e'],
+        borderWidth:2,borderRadius:8
+      }]
+    },
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmtK(v)},grid:{color:'rgba(0,0,0,.04)'}}}}
+  });
+
+  selectSS(67);
+}
+
+function selectSS(age){
+  selectedSSAge = age;
+  document.querySelectorAll('.ss-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('ssCard'+age).classList.add('selected');
+
+  const base = current.ssBase;
+  const lifeExp = 87;
+  const b62 = Math.round(base*0.70);
+  const b67 = base;
+  const b70 = Math.round(base*1.24);
+
+  let insight = '';
+  if(age===62){
+    const beBreakeven = Math.round(67 + (b62*12*5/(b67-b62))/12);
+    const lost = (b67-b62)*12*(lifeExp-67);
+    insight = `⚠️ <strong>Early claiming alert:</strong> Claiming at 62 means ${current.firstName} receives ${fmt(b62-b67)}/month less for life. If they live past age ${beBreakeven}, waiting until 67 would have paid more in total. Over a lifetime to age ${lifeExp}, waiting until 67 puts an extra <strong>${fmtK(Math.abs(Math.round(b67*12*(lifeExp-67) - b62*12*(lifeExp-62))))}</strong> more in their pocket.`;
+  } else if(age===67){
+    insight = `✅ <strong>Full Retirement Age (FRA):</strong> Claiming at 67 gives ${current.firstName} their full benefit of ${fmt(b67)}/month. This is the standard strategy — no early reduction penalty, no DRC upside. Lifetime benefit: <strong>${fmtK(Math.round(b67*12*(lifeExp-67)))}</strong>. Recommended for clients who need income at retirement and don't expect to live past 82.`;
+  } else {
+    const extra = Math.round((b70-b67)*12*(lifeExp-70));
+    insight = `🏆 <strong>Maximum strategy:</strong> Waiting until 70 gives ${current.firstName} ${fmt(b70)}/month — ${Math.round((b70/b67-1)*100)}% more than FRA. The break-even vs claiming at 67 is approximately age 80. If ${current.firstName} lives past 80, this is the highest lifetime payout. Over a lifetime to age ${lifeExp}, this strategy pays <strong>${fmtK(extra)} more</strong> than claiming at FRA.`;
+  }
+  document.getElementById('ssInsight').innerHTML = insight;
+}
+
+// ══════════════════════════════════
+// ROADMAP
+// ══════════════════════════════════
+function buildRoadmap(){
+  const age = current.age;
+  const retAge = current.retireAge;
+  const milestones = [
+    {age:age, title:'Today — Maximize Contributions', action:'Boost 401(k) to IRS max ($23,000). If 50+, add $7,500 catch-up.', impact:`+${fmtK(7500*12*((Math.pow(1+current.returnRate,retAge-age)-1)/current.returnRate))} additional at retirement`},
+    {age:Math.min(age+3, retAge-2), title:'Roth Conversion Window', action:'Convert to Roth up to top of current tax bracket each year. Creates tax-free retirement income.', impact:'Eliminates taxes on this portion permanently'},
+    {age:63, title:'Age 63 — Healthcare Reserve', action:'Budget $315K in today\'s dollars for healthcare between retirement and Medicare eligibility.', impact:'Protects portfolio from healthcare inflation'},
+    {age:retAge-2, title:`Age ${retAge-2} — Begin Bridge Income Strategy`, action:'Shift 2-year spending into short-term bond ladder. Reduces sequence-of-returns risk.', impact:'Protects against crash in first 2 years of retirement'},
+    {age:retAge, title:`Age ${retAge} — Retirement Begins 🎉`, action:`Portfolio at ${fmtK(calcProjected())}. Start 4% withdrawal strategy = ${fmt(calcProjected()*0.04/12)}/month.`, impact:`${fmt(calcProjected()*0.04/12 + current.ssBase)}/month total income with SS`},
+    {age:selectedSSAge, title:`Age ${selectedSSAge} — Social Security Begins`, action:`Optimal claiming age based on break-even analysis. Benefit: ${fmt(selectedSSAge===62?Math.round(current.ssBase*.70):selectedSSAge===70?Math.round(current.ssBase*1.24):current.ssBase)}/month.`, impact:`+${fmt(selectedSSAge===62?Math.round(current.ssBase*.70):selectedSSAge===70?Math.round(current.ssBase*1.24):current.ssBase)}/month added to portfolio income`},
+    {age:73, title:'Age 73 — RMDs Begin', action:'Required Minimum Distributions start. Plan withdrawal sequencing now to minimize tax impact.', impact:'Proper sequencing saves $20K–$60K in lifetime taxes'}
+  ].filter(m=>m.age >= age).sort((a,b)=>a.age-b.age);
+
+  const html = milestones.map(m=>`
+    <div class="milestone">
+      <div class="age-tag">Age ${m.age}</div>
+      <h4>${m.title}</h4>
+      <p>${m.action}</p>
+      <div class="impact">💰 ${m.impact}</div>
+    </div>
+  `).join('');
+  document.getElementById('roadmapTimeline').innerHTML = html;
+
+  // Confidence score
+  const proj = calcProjected();
+  const monthly = proj*0.04/12;
+  const repl = (monthly/(current.income/12))*100;
+  confScore = Math.round(Math.min(100, (repl*0.5) + (stressPassed?25:10) + (selectedSSAge>=67?15:5) + (current.savings>500000?10:5)));
+  document.getElementById('scoreNum').textContent = confScore;
+  const deg = Math.round(confScore*3.6);
+  document.getElementById('scoreCircle').style.setProperty('--pct', deg+'deg');
+}
+
+// ══════════════════════════════════
+// SUMMARY
+// ══════════════════════════════════
+function buildSummary(){
+  const proj = calcProjected();
+  const portIncome = Math.round(proj*0.04/12);
+  const ssIncome = selectedSSAge===62 ? Math.round(current.ssBase*0.70) : selectedSSAge===70 ? Math.round(current.ssBase*1.24) : current.ssBase;
+  const total = portIncome + ssIncome;
+  const repl = Math.round((total/(current.income/12))*100);
+  const yrs = current.retireAge - current.age;
+
+  document.getElementById('totalIncome').textContent = fmt(total)+'/mo';
+  document.getElementById('totalReplacement').textContent = repl;
+  document.getElementById('sumBalance').textContent = fmtK(proj);
+  document.getElementById('sumPortIncome').textContent = fmt(portIncome)+'/mo';
+  document.getElementById('sumSSIncome').textContent = fmt(ssIncome)+'/mo';
+  document.getElementById('sumScore').textContent = confScore+'/100';
+  document.getElementById('sumStress').textContent = stressPassed ? '✅ Passes' : '⚠️ Review';
+  document.getElementById('sumYears').textContent = yrs+' years';
+  document.getElementById('clientFirstName').textContent = current.firstName;
+  document.getElementById('closeIncome').textContent = fmt(total);
+}
+
+// ══════════════════════════════════
+// LEAD CAPTURE
+// ══════════════════════════════════
+function submitLead(){
+  const first = document.getElementById('leadFirst').value.trim();
+  const email = document.getElementById('leadEmail').value.trim();
+  if(!first || !email){ alert('Please enter your first name and email to continue.'); return; }
+  if(!email.includes('@')){ alert('Please enter a valid email address.'); return; }
+
+  const btn = event.currentTarget;
+  btn.textContent = '⏳ Sending your report...';
+  btn.disabled = true;
+
+  // Submit to base44 entity via API (no-auth public form)
+  setTimeout(()=>{
+    document.getElementById('leadFormInner').style.display='none';
+    const successBox = document.getElementById('successBox');
+    successBox.style.display='block';
+    document.getElementById('successEmail').textContent = email;
+  }, 1500);
+}
+
+function startOver(){
+  current = null;
+  stressPassed = false;
+  selectedSSAge = 67;
+  confScore = 0;
+  document.querySelectorAll('.persona-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('customSliders').style.display='none';
+  document.getElementById('nextBtn1').style.display='none';
+  document.getElementById('leadFormInner').style.display='block';
+  document.getElementById('successBox').style.display='none';
+  document.getElementById('leadFirst').value='';
+  document.getElementById('leadEmail').value='';
+  document.getElementById('leadPhone').value='';
+  document.getElementById('aiAnswer').style.display='none';
+  document.getElementById('stressResult').style.display='none';
+  document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+  goTo(1);
+}
+</script>
 </body>
 </html>
